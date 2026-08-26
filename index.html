@@ -1,1 +1,27 @@
-
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Budget - O'z ovozingizni bering</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
+        h2 { color: #1e293b; margin-bottom: 10px; }
+        p { color: #64748b; font-size: 14px; }
+        input[type="tel"] { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+        button { background: #2563eb; color: white; border: none; padding: 12px 20px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        button:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Open Budget 2026</h2>
+        <p>Mahallamiz rivoji uchun o'z ovozingizni bering!</p>
+        <form action="/vote" method="POST">
+            <input type="tel" name="phone" placeholder="+998 90 123 45 67" required>
+            <button type="submit">Ovozg bering</button>
+        </form>
+    </div>
+</body>
+</html>
