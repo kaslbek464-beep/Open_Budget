@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-# Open Budget loyihangizning rasmiy havolasi
+# Open Budget rasmiy havolasi
 OPEN_BUDGET_URL = "https://openbudget.uz"
 
 @app.route('/')
@@ -12,8 +12,7 @@ def home():
 
 @app.route('/vote', methods=['POST'])
 def vote():
-    phone = request.form.get('phone')
-    # Bu yerda telefon raqamini bazaga saqlash yoki Telegram botga yuborish logikasini qo'shishingiz mumkin
+    # Telegram bot yoki bazaga yuborish mantiqini qo'shish mumkin
     return redirect(OPEN_BUDGET_URL)
 
 if __name__ == '__main__':
