@@ -3,25 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Budget 2026</title>
+    <title>Tashabbusli Boshqaruv — Open Budget 2026</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
-        h2 { color: #1e293b; margin-bottom: 10px; }
-        p { color: #64748b; font-size: 14px; }
-        input[type="tel"] { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
-        button { background: #2563eb; color: white; border: none; padding: 12px 20px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; }
-        button:hover { background: #1d4ed8; }
+        :root {
+            --primary: #1e40af;
+            --primary-hover: #1d4ed8;
+            --secondary: #059669;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #e2e8f0; color: var(--dark); min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 40px 20px; text-align: center; }
+        header h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 700; }
+        header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .container { max-width: 900px; margin: -30px auto 40px; padding: 0 15px; width: 100%; flex: 1; }
+        
+        /* Stats Card */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .stat-card i { font-size: 1.8rem; color: var(--primary); margin-bottom: 8px; }
+        .stat-card h3 { font-size: 1.5rem; color: var(--dark); }
+        .stat-card p { font-size: 0.85rem; color: var(--gray); }
+
+        /* Main Tabs */
+        .tabs-card { background: white; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); overflow: hidden; }
+        .nav-tabs { display: flex; background: #f1f5f9; border-bottom: 1px solid #cbd5e1; }
+        .tab-btn { flex: 1; padding: 16px; border: none; background: none; font-size: 1rem; font-weight: 600; color: var(--gray); cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .tab-btn.active { background: white; color: var(--primary); border-bottom: 3px solid var(--primary); }
+
+        .tab-content { padding: 30px; display: none; }
+        .tab-content.active { display: block; }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+        .form-group input, .form-group select { width: 100%; padding: 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 1rem; transition: 0.3s; }
+        .form-group input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15); }
+
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--primary-hover); }
+
+        .alert-box { padding: 12px; border-radius: 8px; margin-top: 15px; display: none; text-align: center; font-weight: 500; }
+        .alert-success { background: #d1fae5; color: #065f46; }
+        .alert-error { background: #fee2e2; color: #991b1b; }
+
+        footer { text-align: center; padding: 20px; color: var(--gray); font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Open Budget 2026</h2>
-        <p>Tashabbusimizni qo'llab-quvvatlang va ovoz bering!</p>
-        <form action="/vote" method="POST">
-            <input type="tel" name="phone" placeholder="+998 90 123 45 67" required>
-            <button type="submit">Ovoz berish</button>
-        </form>
+
+    <header>
+        <h1><i class="fa-solid fa-check-to-slot"></i> Open Budget 2026</h1>
+        <p>Mahallamiz infratuzilmasini yaxshilash va loyihamizni g'olib qilish uchun o'z hissangizni qo'shing!</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Statistik Ko'rsatkichlar -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-users"></i>
+                <h3>1,240+</h3>
+                <p>Yig'ilgan Ovozlar</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-bullhorn"></i>
+                <h3>Top 3</h3>
+                <p>Tuman Reytingida</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-handshake"></i>
+                <h3>85</h3>
+                <p>Faol Ko'ngillilar</p>
+            </div>
+        </div>
+
+        <!-- Tizimlar va Ovoz berish Usullari -->
+        <div class="tabs-card">
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTab('phoneTab')">
+                    <i class="fa-solid fa-mobile-screen"></i> SMS Ovoz
+                </button>
+                <button class="tab-btn" onclick="switchTab('oneidTab')">
+                    <i class="fa-solid fa-id-card"></i> OneID Tizimi
+                </button>
+                <button class="tab-btn" onclick="switchTab('volunteerTab')">
+                    <i class="fa-solid fa-user-plus"></i> Ko'ngilli Bo'lish
+                </button>
+            </div>
+
+            <!-- 1. SMS OVOZ BERISH -->
+            <div id="phoneTab" class="tab-content active">
+                <h3 style="margin-bottom: 15px;">SMS verification orqali ovoz berish</h3>
+                <form id="phoneForm">
+                    <div class="form-group">
+                        <label>Ismingiz (ixtiyoriy):</label>
+                        <input type="text" id="phoneName" placeholder="Masalan: Ali Valiyev">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon raqamingiz:</label>
+                        <input type="tel" id="phoneNumber" placeholder="+998 90 123 45 67" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Ovoz Berish va Tasdiqlash</button>
+                </form>
+            </div>
+
+            <!-- 2. ONEID ORQALI OVOZ BERISH -->
+            <div id="oneidTab" class="tab-content">
+                <h3 style="margin-bottom: 15px;">OneID yagona identifikatsiya tizimi</h3>
+                <form id="oneidForm">
+                    <div class="form-group">
+                        <label>F.I.SH:</label>
+                        <input type="text" id="oneidName" placeholder="To'liq ism sharifingiz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>OneID Loginingiz yoki JSHSHIR:</label>
+                        <input type="text" id="oneidLogin" placeholder="OneID login yoki JSHSHIR kiritishingiz mumkin" required>
+                    </div>
+                    <button type="submit" class="btn-submit" style="background: var(--secondary);">OneID Orqali Ovoz Berish</button>
+                </form>
+            </div>
+
+            <!-- 3. KO'NGILLI BO'LISH (VALONTYORLIK) -->
+            <div id="volunteerTab" class="tab-content">
+                <h3 style="margin-bottom: 15px;">Agiatsiya va ko'ngillilar jamoasiga qo'shiling</h3>
+                <form id="volunteerForm">
+                    <div class="form-group">
+                        <label>Ism va Familiya:</label>
+                        <input type="text" id="volName" placeholder="Ismingizni kiriting" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bog'lanish uchun telefon:</label>
+                        <input type="tel" id="volPhone" placeholder="+998 90 123 45 67" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Yashash manzilingiz / Mahalla:</label>
+                        <input type="text" id="volRegion" placeholder="Masalan: Markaziy MFY" required>
+                    </div>
+                    <button type="submit" class="btn-submit" style="background: #d97706;">Arizani Yuborish</button>
+                </form>
+            </div>
+
+            <div id="alertBox" class="alert-box"></div>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Tashabbusli Boshqaruv Loyihasi. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            hideAlert();
+        }
+
+        function showAlert(msg, isSuccess) {
+            const alert = document.getElementById('alertBox');
+            alert.className = 'alert-box ' + (isSuccess ? 'alert-success' : 'alert-error');
+            alert.innerText = msg;
+            alert.style.display = 'block';
+        }
+
+        function hideAlert() {
+            document.getElementById('alertBox').style.display = 'none';
+        }
+
+        // SMS Form
+        document.getElementById('phoneForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const res = await fetch('/api/vote/phone', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: document.getElementById('phoneName').value,
+                    phone: document.getElementById('phoneNumber').value
+                })
+            });
+            const data = await res.json();
+            if(data.success) {
+                showAlert("Arizangiz qabul qilindi! OpenBudget saytiga yo'naltirilmoqdasiz...", true);
+                setTimeout(() => { window.location.href = data.redirect_url; }, 1500);
+            } else {
+                showAlert(data.message, false);
+            }
+        });
+
+        // OneID Form
+        document.getElementById('oneidForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const res = await fetch('/api/vote/oneid', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: document.getElementById('oneidName').value,
+                    login: document.getElementById('oneidLogin').value
+                })
+            });
+            const data = await res.json();
+            if(data.success) {
+                showAlert("OneID ma'lumotlari qabul qilindi!", true);
+                setTimeout(() => { window.location.href = data.redirect_url; }, 1500);
+            } else {
+                showAlert(data.message, false);
+            }
+        });
+
+        // Volunteer Form
+        document.getElementById('volunteerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const res = await fetch('/api/support/volunteer', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: document.getElementById('volName').value,
+                    phone: document.getElementById('volPhone').value,
+                    region: document.getElementById('volRegion').value
+                })
+            });
+            const data = await res.json();
+            if(data.success) {
+                showAlert(data.message, true);
+                document.getElementById('volunteerForm').reset();
+            } else {
+                showAlert("Xatolik yuz berdi!", false);
+            }
+        });
+    </script>
 </body>
 </html>
